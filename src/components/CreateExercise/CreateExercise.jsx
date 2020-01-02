@@ -32,9 +32,18 @@ export default function CreateExercise({ exerciseCreate }) {
 
   const classes = styles();
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  const handleToggle = () => {
+    setOpen(!open);
   };
+
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
+
+  // const handleClose = () => {
+  //   setOpen(false);
+  //   resetExercise();
+  // };
 
   const resetExercise = () => {
     setExercise({
@@ -42,11 +51,6 @@ export default function CreateExercise({ exerciseCreate }) {
       description: '',
       muscles: ''
     });
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-    resetExercise();
   };
 
   const handleSubmit = () => {
@@ -71,39 +75,39 @@ export default function CreateExercise({ exerciseCreate }) {
   return (
     <>
       <Fab
-        color="secondary"
-        aria-label="add"
-        onClick={handleClickOpen}
-        size="small"
+        color='secondary'
+        aria-label='add'
+        onClick={handleToggle}
+        size='small'
       >
         <AddIcon />
       </Fab>
       <Dialog
         open={open}
         onClose={handleClose}
-        aria-labelledby="form-dialog-title"
+        aria-labelledby='form-dialog-title'
       >
-        <DialogTitle id="form-dialog-title">Create a New Exercise</DialogTitle>
+        <DialogTitle id='form-dialog-title'>Create a New Exercise</DialogTitle>
         <DialogContent>
           <DialogContentText>Please fill out the form below.</DialogContentText>
           <form>
             <TextField
               required
-              label="title"
-              variant="outlined"
+              label='title'
+              variant='outlined'
               onChange={createExercise('title')}
-              margin="normal"
+              margin='normal'
               className={classes.inputFields}
             />
             <br />
             <TextField
               required
-              label="description"
-              variant="outlined"
+              label='description'
+              variant='outlined'
               multiline
-              rows="4"
+              rows='4'
               onChange={createExercise('description')}
-              margin="normal"
+              margin='normal'
               className={classes.inputFields}
             />
             <br />
@@ -125,10 +129,10 @@ export default function CreateExercise({ exerciseCreate }) {
           </form>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleClose} color='primary'>
             Cancel
           </Button>
-          <Button onClick={handleSubmit} color="primary">
+          <Button onClick={handleSubmit} color='primary'>
             Create
           </Button>
         </DialogActions>

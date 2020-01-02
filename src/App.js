@@ -7,18 +7,24 @@ export default function App() {
   const [exercises, setExercises] = React.useState(exercisesList);
   const [exercise, setExercise] = React.useState({});
   const [category, setCategory] = React.useState('');
+  const [editMode, setEditMode] = React.useState(false);
 
   const getExercisesByMuscles = () => {
+    const initialExercises = muscles.reduce((exercises, category) => {
+      return {
+        ...exercises,
+        [category]: []
+      };
+    }, {});
+
     return Object.entries(
       exercises.reduce((exercises, exercise) => {
         const { muscles } = exercise;
 
-        exercises[muscles] = exercises[muscles]
-          ? [...exercises[muscles], exercise]
-          : [exercise];
+        exercises[muscles] = [...exercises[muscles], exercise];
 
         return exercises;
-      }, {})
+      }, initialExercises)
     );
   };
 
@@ -36,6 +42,25 @@ export default function App() {
     setExercises([...exercises, exercise]);
   };
 
+  const onDelete = (id) => () => {
+    setExercises(exercises.filter((item) => item.id !== id));
+  };
+
+  const onEdit = (id) => () => {
+    setEditMode(true);
+    setExercise(() => {
+      return exercises.find((ex) => ex.id === id);
+    });
+    // setExercises(
+    //   exercises.map((item) => {
+    //     if (item.id !== id) {
+    //     }
+
+    //     return item;
+    //   })
+    // );
+  };
+
   const exercisesByMuscles = getExercisesByMuscles();
 
   return (
@@ -47,6 +72,9 @@ export default function App() {
         category={category}
         exercises={exercisesByMuscles}
         onSelect={handleExerciseSelected}
+        onDelete={onDelete}
+        onEdit={onEdit}
+        editMode={editMode}
       />
 
       <Footer
