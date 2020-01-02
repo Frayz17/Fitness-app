@@ -84,7 +84,7 @@ export default function CreateExercise({ exerciseCreate }) {
       </Fab>
       <Dialog
         open={open}
-        onClose={handleClose}
+        onClose={handleToggle}
         aria-labelledby='form-dialog-title'
       >
         <DialogTitle id='form-dialog-title'>Create a New Exercise</DialogTitle>
