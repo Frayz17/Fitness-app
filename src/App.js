@@ -4,7 +4,7 @@ import Exercises from 'components/Exercises';
 import { muscles, exercisesList } from './store.js';
 
 export default function App() {
-  const [exercises] = React.useState(exercisesList);
+  const [exercises, setExercises] = React.useState(exercisesList);
   const [exercise, setExercise] = React.useState({});
   const [category, setCategory] = React.useState('');
 
@@ -32,11 +32,15 @@ export default function App() {
     });
   };
 
+  const exerciseCreate = (exercise) => {
+    setExercises([...exercises, exercise]);
+  };
+
   const exercisesByMuscles = getExercisesByMuscles();
 
   return (
     <>
-      <Header />
+      <Header exercises={exercisesByMuscles} exerciseCreate={exerciseCreate} />
 
       <Exercises
         exercise={exercise}

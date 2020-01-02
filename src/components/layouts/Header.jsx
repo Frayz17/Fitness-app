@@ -4,13 +4,13 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import CreateExercise from 'components/CreateExercise';
 
-export default (props) => (
-  <AppBar position='static'>
+export default ({ exerciseCreate }) => (
+  <AppBar position="static">
     <Toolbar>
-      <Typography variant='h4' color='inherit' style={{ flex: 1 }}>
+      <Typography variant="h4" color="inherit" style={{ flex: 1 }}>
         Exercise Database
       </Typography>
-      <CreateExercise />
+      <CreateExercise exerciseCreate={exerciseCreate} />
     </Toolbar>
   </AppBar>
 );
