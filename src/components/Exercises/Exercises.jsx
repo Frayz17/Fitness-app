@@ -8,33 +8,33 @@ export default ({
   exercises,
   category,
   onSelect,
-  exercise: {
-    id,
-    title = 'Welcome!',
-    description = 'Please select an exercise from the list on the left.'
-  },
+  exercise,
   onDelete,
   onEdit,
   editMode
-}) => (
-  <Grid container spacing={1}>
-    <Grid item sm>
-      <LeftPanel
-        styles={styles}
-        exercises={exercises}
-        onSelect={onSelect}
-        category={category}
-        onDelete={onDelete}
-        onEdit={onEdit}
-      />
+}) => {
+  return (
+    <Grid container spacing={1}>
+      <Grid item sm>
+        <LeftPanel
+          styles={styles}
+          exercises={exercises}
+          onSelect={onSelect}
+          category={category}
+          onDelete={onDelete}
+          onEdit={onEdit}
+        />
+      </Grid>
+      <Grid item sm>
+        <RightPanel
+          styles={styles}
+          editMode={editMode}
+          // title={title}
+          // description={description}
+          onEdit={onEdit}
+          exercise={exercise}
+        />
+      </Grid>
     </Grid>
-    <Grid item sm>
-      <RightPanel
-        styles={styles}
-        editMode={editMode}
-        title={title}
-        description={description}
-      />
-    </Grid>
-  </Grid>
-);
+  );
+};

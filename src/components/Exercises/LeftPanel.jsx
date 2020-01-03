@@ -17,28 +17,31 @@ export default function LeftPanel({
   onDelete,
   onEdit
 }) {
+  console.log(exercises);
   return (
     <Paper style={styles.Paper}>
       {exercises.map(([group, exercises]) =>
         !category || category === group ? (
           <Fragment key={group}>
-            <Typography variant='h5' style={{ textTransform: 'capitalize' }}>
+            <Typography variant="h5" style={{ textTransform: 'capitalize' }}>
               {group}
             </Typography>
-            <List component='ul'>
-              {exercises.map(({ id, title }) => (
-                <ListItem key={id} button onClick={() => onSelect(id)}>
-                  <ListItemText primary={title} />
-                  <ListItemSecondaryAction>
-                    <IconButton onClick={onEdit(id)}>
-                      <EditIcon />
-                    </IconButton>
-                    <IconButton onClick={onDelete(id)}>
-                      <DeleteIcon />
-                    </IconButton>
-                  </ListItemSecondaryAction>
-                </ListItem>
-              ))}
+            <List component="ul">
+              {exercises.map(({ id, title }) => {
+                return (
+                  <ListItem key={id} button onClick={() => onSelect(id)}>
+                    <ListItemText primary={title} />
+                    <ListItemSecondaryAction>
+                      <IconButton onClick={onEdit(id)}>
+                        <EditIcon />
+                      </IconButton>
+                      <IconButton onClick={onDelete(id)}>
+                        <DeleteIcon />
+                      </IconButton>
+                    </ListItemSecondaryAction>
+                  </ListItem>
+                );
+              })}
             </List>
           </Fragment>
         ) : null

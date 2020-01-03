@@ -33,12 +33,13 @@ export default function App() {
   };
 
   const handleExerciseSelected = (id) => {
+    console.log(id);
     setExercise(() => {
       return exercises.find((ex) => ex.id === id);
     });
   };
 
-  const exerciseCreate = (exercise) => {
+  const onCreate = (exercise) => {
     setExercises([...exercises, exercise]);
   };
 
@@ -47,25 +48,16 @@ export default function App() {
   };
 
   const onEdit = (id) => () => {
+    console.log(id);
     setEditMode(true);
-    setExercise(() => {
-      return exercises.find((ex) => ex.id === id);
-    });
-    // setExercises(
-    //   exercises.map((item) => {
-    //     if (item.id !== id) {
-    //     }
-
-    //     return item;
-    //   })
-    // );
+    handleExerciseSelected(id);
   };
 
   const exercisesByMuscles = getExercisesByMuscles();
 
   return (
     <>
-      <Header exercises={exercisesByMuscles} exerciseCreate={exerciseCreate} />
+      <Header exercises={exercisesByMuscles} onCreate={onCreate} />
 
       <Exercises
         exercise={exercise}

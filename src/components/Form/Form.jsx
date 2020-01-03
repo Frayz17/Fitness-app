@@ -15,17 +15,24 @@ const styles = makeStyles((theme) => ({
   }
 }));
 
-export default function Form({ exerciseCreate }) {
-  const [exercise, setExercise] = React.useState({
-    title: '',
-    description: '',
-    muscles: ''
-  });
+export default function Form({ onSubmit, exercise }) {
+  const [tempExercise, setTempExercise] = React.useState(getInitialState());
+
+  function getInitialState() {
+    console.log(exercise);
+    return exercise
+      ? exercise
+      : {
+          title: '',
+          description: '',
+          muscles: ''
+        };
+  }
 
   const classes = styles();
 
   const resetExercise = () => {
-    setExercise({
+    setTempExercise({
       title: '',
       description: '',
       muscles: ''
@@ -35,16 +42,18 @@ export default function Form({ exerciseCreate }) {
   const handleSubmit = () => {
     // TODO: validate
 
-    exerciseCreate({
-      ...exercise,
-      id: exercise.title.toLocaleLowerCase().replace(/ /g, '-')
+    onSubmit({
+      ...tempExercise,
+      id: tempExercise.title.toLocaleLowerCase().replace(/ /g, '-')
     });
 
     resetExercise();
   };
 
   const handleChange = (name) => (e) => {
-    setExercise({
+    console.log(tempExercise);
+    setTempExercise({
+      ...tempExercise,
       [name]: e.target.value
     });
   };
@@ -53,27 +62,27 @@ export default function Form({ exerciseCreate }) {
     <form>
       <TextField
         required
-        label='title'
-        variant='outlined'
+        label="title"
+        variant="outlined"
         onChange={handleChange('title')}
-        margin='normal'
+        margin="normal"
         className={classes.inputFields}
       />
       <br />
       <TextField
         required
-        label='description'
-        variant='outlined'
+        label="description"
+        variant="outlined"
         multiline
-        rows='4'
+        rows="4"
         onChange={handleChange('description')}
-        margin='normal'
+        margin="normal"
         className={classes.inputFields}
       />
       <br />
       <FormControl className={classes.inputFields}>
         <InputLabel>Muscles</InputLabel>
-        <Select value={exercise.muscles} onChange={handleChange('muscles')}>
+        <Select value={tempExercise.muscles} onChange={handleChange('muscles')}>
           {muscles.map((item, i) => {
             return (
               <MenuItem key={i} value={item}>
@@ -85,8 +94,8 @@ export default function Form({ exerciseCreate }) {
       </FormControl>
       <br />
       <DialogActions>
-        <Button onClick={handleSubmit} color='primary'>
-          Create
+        <Button onClick={handleSubmit} color="primary">
+          Submit
         </Button>
       </DialogActions>
     </form>
