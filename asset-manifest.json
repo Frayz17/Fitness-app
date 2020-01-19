@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/gym-exercises/static/js/main.25215f99.chunk.js",
+    "main.js.map": "/gym-exercises/static/js/main.25215f99.chunk.js.map",
+    "runtime-main.js": "/gym-exercises/static/js/runtime-main.8cb33fd9.js",
+    "runtime-main.js.map": "/gym-exercises/static/js/runtime-main.8cb33fd9.js.map",
+    "static/js/2.049c8836.chunk.js": "/gym-exercises/static/js/2.049c8836.chunk.js",
+    "static/js/2.049c8836.chunk.js.map": "/gym-exercises/static/js/2.049c8836.chunk.js.map",
+    "index.html": "/gym-exercises/index.html",
+    "precache-manifest.388476d6d9f9b742311ccfe9fe38e80d.js": "/gym-exercises/precache-manifest.388476d6d9f9b742311ccfe9fe38e80d.js",
+    "service-worker.js": "/gym-exercises/service-worker.js",
+    "static/js/2.049c8836.chunk.js.LICENSE": "/gym-exercises/static/js/2.049c8836.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8cb33fd9.js",
+    "static/js/2.049c8836.chunk.js",
+    "static/js/main.25215f99.chunk.js"
+  ]
+}
